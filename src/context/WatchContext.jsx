@@ -7,12 +7,13 @@ const WatchContext = ({children}) => {
   const [genreList, setGenreList] =  useState([])
 
   useEffect(() => {
-      let url = `https://api.themoviedb.org/3/genre/movie/list?api_key=0a66b8d659c279579b4c12602d9bef7d`
-      
-      fetch(url)
-      .then((response) => response.json())
-      .then((data) => setGenreList(data.genres || []))
-    },[genreList])
+  let url = `https://api.themoviedb.org/3/genre/movie/list?api_key=0a66b8d659c279579b4c12602d9bef7d`
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => setGenreList(data.genres || []))
+    .catch((error) => console.log(error))
+}, [])   // ✅ FIXED
   
 
   const toggleWatchList = (movies) => {
